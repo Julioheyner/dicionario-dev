@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="CodyLingo: dicionário de conceitos e palavras reservadas de C e Java em português, espanhol e inglês, com exemplos de código e guia de profissões de desenvolvimento.">
+    <meta name="theme-color" content="#1B1B3A">
+    <title>CodyLingo · Dicionário para programadores</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23FF6600'/%3E%3Ctext x='16' y='23' font-family='Arial' font-size='20' font-weight='700' text-anchor='middle' fill='%231B1B3A'%3EC%3C/text%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Figtree:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap">
+    <link rel="stylesheet" href="./styles/style.css">
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script defer src="./js/data/dicionario.js"></script>
+    <script defer src="./js/data/dicionario-extra.js"></script>
+    <script defer src="./js/data/profissoes.js"></script>
+    <script defer src="./js/app.js"></script>
+</head>
+
+<body class="preloader-ativo">
+
+    <!-- Preloader -->
+    <div id="preloader" class="preloader" aria-hidden="true">
+        <div class="preloader-conteudo">
+            <div class="preloader-codigo">
+                <span class="preloader-tag">&lt;html&gt;</span><br>
+                <span class="preloader-tag">&lt;body&gt;</span><br>
+                <span class="preloader-txt" id="preloader-txt"></span><span class="preloader-cursor">|</span><br>
+                <span class="preloader-tag">&lt;/body&gt;</span><br>
+                <span class="preloader-tag">&lt;/html&gt;</span>
+            </div>
+            <div class="preloader-status">
+                <span class="preloader-carregando">Carregando</span>
+                <span class="preloader-pontos"><span>.</span><span>.</span><span>.</span></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ícones reutilizados em todo o site -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+        <symbol id="i-github" viewBox="0 0 24 24">
+            <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+        </symbol>
+        <symbol id="i-linkedin" viewBox="0 0 24 24">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+        </symbol>
+        <symbol id="i-whatsapp" viewBox="0 0 24 24">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+        </symbol>
+        <symbol id="i-portfolio" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="7" width="18" height="13" rx="2" />
+            <path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 13h18" />
+        </symbol>
+        <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="11" height="11" rx="2" />
+            <path d="M5 15V5a2 2 0 0 1 2-2h10" />
+        </symbol>
+        <symbol id="i-arrow-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M15 18l-6-6 6-6" />
+        </symbol>
+        <symbol id="i-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 18l6-6-6-6" />
+        </symbol>
+        <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8" />
+            <path d="M21 21l-4.35-4.35" />
+        </symbol>
+        <symbol id="i-trash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+        </symbol>
+        <symbol id="i-volume" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+            <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+        </symbol>
+        <symbol id="i-stop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="6" y="6" width="12" height="12" rx="2" />
+        </symbol>
+
+        <!-- Ícones da Barra Inferior Mobile -->
+        <symbol id="i-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+            <polyline points="9 22 9 12 15 12 15 22" />
+        </symbol>
+        <symbol id="i-code" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="16 18 22 12 16 6" />
+            <polyline points="8 6 2 12 8 18" />
+        </symbol>
+        <symbol id="i-briefcase" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+        </symbol>
+        <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+            <polyline points="22,6 12,13 2,6" />
+        </symbol>
+    </svg>
+
+    <a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
+    <header class="topo">
+        <div class="topo-in">
+            <a class="marca" href="#inicio" aria-label="CodyLingo, ir para o início">
+                <img class="marca-icone" src="./assets/robot_8788094.png" alt="" width="36" height="36" onerror="this.remove()">
+                <span class="marca-nome">Cody<span>Lingo</span></span>
+            </a>
+
+            <div class="topo-acoes">
+                <button class="btn-icone" type="button" id="btn-busca-rapida" aria-label="Pesquisar no dicionário">
+                    <svg aria-hidden="true"><use href="#i-search" /></svg>
+                </button>
+                <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu" aria-label="Abrir menu">
+                    <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                        <path class="l1" d="M4 7h16" />
+                        <path class="l2" d="M4 12h16" />
+                        <path class="l3" d="M4 17h16" />
+                    </svg>
+                </button>
+            </div>
+
+            <nav id="menu" class="menu" aria-label="Principal">
+                <ul>
+                    <li><a href="#inicio">Início</a></li>
+                    <li><a href="#dicionario">Dicionário</a></li>
+                    <li><a href="#profissoes">Profissões</a></li>
+                    <li><a href="#equipe">Equipe</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#contato" class="menu-destaque">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="conteudo" tabindex="-1">
+        <noscript>
+            <p class="aviso">Este site precisa de JavaScript para mostrar o dicionário e as profissões.</p>
+        </noscript>
+
+        <!-- INÍCIO -->
+        <section id="inicio" class="view hero" data-titulo="Início">
+            <div class="hero-texto">
+                <p class="hero-eyebrow">Dicionário de programação</p>
+                <h1>Conceitos de C e Java em três idiomas</h1>
+                <p class="lead">Sou o CodyLingo, seu amigo para tirar dúvidas sobre conceitos e palavras reservadas da programação. Mostro significados e exemplos em português, espanhol e inglês, e apresento as profissões de desenvolvimento de software.</p>
+                <div class="hero-acoes">
+                    <a class="btn btn-laranja btn-grande" href="#dicionario">Vamos começar</a>
+                    <a class="link-hero" href="#profissoes">Ver profissões</a>
+                </div>
+                <ul class="hero-tags" aria-label="O que você encontra aqui">
+                    <li>Conceitos básicos</li>
+                    <li>Estruturas de dados</li>
+                    <li>Palavras reservadas</li>
+                    <li>Profissões</li>
+                </ul>
+            </div>
+            <div class="hero-arte">
+                <img class="hero-img" src="./assets/5483074_2781689.jpg" alt="Ilustração de boas-vindas do CodyLingo" width="640" height="480">
+                <aside class="verbete" id="verbete" aria-label="Termo em destaque" hidden>
+                    <p class="verbete-termo" id="verbete-termo"></p>
+                    <p class="verbete-def" id="verbete-def"></p>
+                    <div class="verbete-rodape">
+                        <div class="seg seg-claro" role="group" aria-label="Idioma do verbete">
+                            <button type="button" data-idioma="pt">pt</button>
+                            <button type="button" data-idioma="es">es</button>
+                            <button type="button" data-idioma="en">en</button>
+                        </div>
+                        <button class="link-claro" type="button" id="verbete-ir">Ver exemplos de código</button>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <!-- DICIONÁRIO -->
+        <section id="dicionario" class="view" data-titulo="Dicionário" hidden>
+            <div class="container">
+                <header class="view-cab">
+                    <h1>Conceitos e Sintaxe</h1>
+                    <p>Conceitos básicos, estruturas de dados e palavras reservadas de Java e C, com definição e exemplos de código.</p>
+                </header>
+                <div class="dic">
+                    <aside class="dic-lateral">
+                        <form id="form-dic" role="search" autocomplete="off" class="dic-form">
+                            <fieldset class="seg-campo">
+                                <legend>Idioma</legend>
+                                <div class="seg" id="idiomas">
+                                    <label><input type="radio" name="idioma" value="pt" checked><span>Português</span></label>
+                                    <label><input type="radio" name="idioma" value="es"><span>Español</span></label>
+                                    <label><input type="radio" name="idioma" value="en"><span>English</span></label>
+                                </div>
+                            </fieldset>
+                            <label class="rotulo" for="busca">Pesquisar termo</label>
+                            <input class="campo" id="busca" type="search" list="termos" placeholder="Digite uma palavra...">
+                            <div class="acoes">
+                                <button class="btn btn-tinta" type="submit">
+                                    <svg aria-hidden="true"><use href="#i-search" /></svg>
+                                    Pesquisar
+                                </button>
+                                <button class="btn btn-contorno" type="button" id="limpar">
+                                    <svg aria-hidden="true"><use href="#i-trash" /></svg>
+                                    Limpar
+                                </button>
+                                <button class="btn btn-contorno" type="button" id="ouvir" disabled>
+                                    <svg aria-hidden="true"><use href="#i-volume" /></svg>
+                                    <span class="btn-texto">Ouvir</span>
+                                </button>
+                            </div>
+                        </form>
+                        <nav class="indice" aria-label="Índice de termos" id="indice"></nav>
+                        <p class="indice-contagem" id="indice-contagem" aria-live="polite"></p>
+                    </aside>
+                    <article class="resultado" id="resultado" aria-live="polite">
+                        <p class="vazio">Escolha um termo no índice ou digite uma palavra, como <strong>class</strong>, para ver a definição e exemplos.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROFISSÕES -->
+        <section id="profissoes" class="view" data-titulo="Profissões" hidden>
+            <div class="container">
+                <header class="view-cab">
+                    <h1>Profissões em desenvolvimento</h1>
+                    <p>Descubra o que cada área faz e quais tecnologias usa no dia a dia.</p>
+                </header>
+                <div class="prof">
+                    <nav class="prof-lista" aria-label="Lista de profissões" id="prof-lista"></nav>
+                    <article class="prof-detalhe" id="prof-detalhe" aria-live="polite"></article>
+                </div>
+            </div>
+        </section>
+
+        <!-- EQUIPE -->
+        <section id="equipe" class="view" data-titulo="Equipe" hidden>
+            <div class="container">
+                <header class="view-cab">
+                    <h1>Team</h1>
+                    <p>Quem construiu o CodyLingo.</p>
+                </header>
+                <ul class="equipe-lista">
+                    <li class="membro">
+                        <img src="./assets/israelbragaicone.png" alt="Israel Braga" width="96" height="96">
+                        <div>
+                            <h2>Israel Braga</h2>
+                            <p class="links">
+                                <a href="https://github.com/IsraelAragao" target="_blank" rel="noopener noreferrer"><svg aria-hidden="true"><use href="#i-github" /></svg>GitHub</a>
+                                <a href="https://www.linkedin.com/in/israel-braga-9b5647268" target="_blank" rel="noopener noreferrer"><svg aria-hidden="true"><use href="#i-linkedin" /></svg>LinkedIn</a>
+                            </p>
+                        </div>
+                    </li>
+                    <li class="membro">
+                        <img src="./assets/julioicon.png" alt="Julio Gonzales" width="96" height="96">
+                        <div>
+                            <h2>Julio Gonzales</h2>
+                            <p class="links">
+                                <a href="https://github.com/Julioheyner" target="_blank" rel="noopener noreferrer"><svg aria-hidden="true"><use href="#i-github" /></svg>GitHub</a>
+                                <a href="https://br.linkedin.com/in/julio-gonzales-ren" target="_blank" rel="noopener noreferrer"><svg aria-hidden="true"><use href="#i-linkedin" /></svg>LinkedIn</a>
+                            </p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- SOBRE -->
+        <section id="sobre" class="view" data-titulo="Sobre" hidden>
+            <div class="container">
+                <header class="view-cab">
+                    <h1>Sobre o CodyLingo</h1>
+                </header>
+                <div class="sobre">
+                    <div class="sobre-texto">
+                        <p>O <strong>CodyLingo</strong> é um dicionário online para estudantes e profissionais de desenvolvimento de software. Ele reúne o vocabulário usado na programação: conceitos básicos, estruturas de dados (como pilha, fila e matriz) e palavras reservadas das linguagens C e Java.</p>
+                        <p>Também apresenta as diversas profissões da área, para orientar quem está começando a jornada profissional.</p>
+                        <p><a class="btn btn-laranja" href="#dicionario">Abrir o dicionário</a></p>
+                    </div>
+                    <img src="./assets/4548450.jpg" alt="Ilustração sobre desenvolvimento de software" width="560" height="420" loading="lazy">
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTATO -->
+        <section id="contato" class="view" data-titulo="Contato" hidden>
+            <div class="container">
+                <header class="view-cab">
+                    <h1>Fale conosco</h1>
+                    <p>Clique no ícone para enviar uma mensagem ao desenvolvedor.</p>
+                </header>
+                <!-- Troque o endereço abaixo pelo seu email. -->
+                <a class="email-pilula" href="mailto:julioheyner@proton.me?subject=Contato%20pelo%20CodyLingo" aria-label="Enviar email ao desenvolvedor">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <rect x="3" y="5" width="18" height="14" rx="2" />
+                        <path d="m3.5 6.5 8.5 6.5 8.5-6.5" />
+                    </svg>
+                    <span class="pilula-rotulo" aria-hidden="true">Enviar email</span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="rodape">
+        <div class="rodape-in">
+            <div class="rodape-marca">
+                <p class="rodape-logo">
+                    <img src="./img/robot.png" alt="" width="32" height="32" onerror="this.remove()">
+                    <span class="rodape-nome">Cody<span>Lingo</span></span>
+                </p>
+                <p>Dicionário básico de C e Java em três idiomas.</p>
+            </div>
+            <nav class="rodape-nav" aria-label="Atalhos do rodapé">
+                <h2>Navegue</h2>
+                <ul>
+                    <li><a href="#inicio">Início</a></li>
+                    <li><a href="#dicionario">Dicionário</a></li>
+                    <li><a href="#profissoes">Profissões</a></li>
+                    <li><a href="#equipe">Equipe</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+            <div class="rodape-redes">
+                <h2>Projeto</h2>
+                <ul>
+                    <li><a class="pilula" href="https://github.com/Julioheyner" target="_blank" rel="noopener noreferrer"><svg aria-hidden="true"><use href="#i-github" /></svg>GitHub</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="rodape-base">
+            <p class="credito-autor">Desenvolvido por <strong>Julio Gonzales</strong> &copy; 2024–<span id="ano">2026</span> <span class="credito-marca">CodyLingo</span></p>
+            <p class="credito-arte"><span class="credito-rotulo">Créditos visuais:</span> ícone robô, ilustrações e imagens criados por <a href="https://www.magnific.com/app" target="_blank" rel="noopener noreferrer">Magnific</a>.</p>
+        </div>
+    </footer>
+
+    <!-- Barra de Navegação Inferior (Mobile) -->
+    <nav class="bottom-nav" aria-label="Navegação principal mobile">
+        <a href="#inicio" class="bottom-nav-link" aria-label="Início">
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                <polyline points="9 22 9 12 15 12 15 22" />
+            </svg>
+            <span>Início</span>
+        </a>
+        <a href="#dicionario" class="bottom-nav-link" aria-label="Dicionário">
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="16 18 22 12 16 6" />
+                <polyline points="8 6 2 12 8 18" />
+            </svg>
+            <span>Dicionário</span>
+        </a>
+        <a href="#profissoes" class="bottom-nav-link" aria-label="Profissões">
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+            </svg>
+            <span>Profissões</span>
+        </a>
+        <a href="#contato" class="bottom-nav-link" aria-label="Contato">
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                <polyline points="22,6 12,13 2,6" />
+            </svg>
+            <span>Contato</span>
+        </a>
+    </nav>
+
+    <datalist id="termos"></datalist>
+</body>
+
+</html>
