@@ -463,3 +463,48 @@
 
     iniciarPreloader();
 })();
+
+/*---------
+  BOTTOM NAV — auto-hide no scroll
+---------*/
+(function initBottomNavAutoHide() {
+    const nav = document.querySelector('.bottom-nav');
+    if (!nav) return;
+
+    let lastY = window.scrollY;
+    let ticking = false;
+    const THRESHOLD = 8;     // px mínimos para considerar mudança de direção
+    const HIDE_AFTER = 120;  // só esconde depois de rolar isso pra baixo
+
+    function update() {
+        const y = window.scrollY;
+        const delta = y - lastY;
+
+        // No topo da página, sempre visível
+        if (y < HIDE_AFTER) {
+            nav.classList.remove('bottom-nav--hidden');
+            lastY = y;
+            ticking = false;
+            return;
+        }
+
+        // Scroll para baixo (delta > 0) → esconde
+        if (delta > THRESHOLD) {
+            nav.classList.add('bottom-nav--hidden');
+        }
+        // Scroll para cima (delta < 0) → mostra
+        else if (delta < -THRESHOLD) {
+            nav.classList.remove('bottom-nav--hidden');
+        }
+
+        lastY = y;
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(update);
+            ticking = true;
+        }
+    }, { passive: true });
+})();
